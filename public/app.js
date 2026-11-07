@@ -142,6 +142,16 @@ function fillForm() {
   $('#amInvites').checked = !!c.autoMod?.blockInvites;
   $('#amLinks').checked = !!c.autoMod?.blockLinks;
   $('#amWords').value = (c.autoMod?.bannedWords || []).join(', ');
+  // tickets
+  const t = c.tickets || {};
+  $('#tkEnabled').checked = !!t.enabled;
+  $('#tkPanelChannel').value = t.panelChannel || '';
+  $('#tkPanelTitle').value = t.panelTitle || '';
+  $('#tkPanelMessage').value = t.panelMessage || '';
+  $('#tkButtonLabel').value = t.buttonLabel || '';
+  $('#tkCategory').value = t.categoryName || '';
+  $('#tkSupportRoles').value = (t.supportRoles || []).join(', ');
+  $('#tkOpenMessage').value = t.openMessage || '';
 
   renderRoles(); renderChannels(); renderSelfRoles(); renderCommands();
 }
@@ -262,6 +272,16 @@ function collectForm() {
     blockInvites: $('#amInvites').checked,
     blockLinks: $('#amLinks').checked,
     bannedWords: $('#amWords').value.split(',').map((w) => w.trim()).filter(Boolean),
+  };
+  c.tickets = {
+    enabled: $('#tkEnabled').checked,
+    panelChannel: $('#tkPanelChannel').value.trim(),
+    panelTitle: $('#tkPanelTitle').value,
+    panelMessage: $('#tkPanelMessage').value,
+    buttonLabel: $('#tkButtonLabel').value.trim(),
+    categoryName: $('#tkCategory').value.trim(),
+    supportRoles: $('#tkSupportRoles').value.split(',').map((w) => w.trim()).filter(Boolean),
+    openMessage: $('#tkOpenMessage').value,
   };
   return c;
 }

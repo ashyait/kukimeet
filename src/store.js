@@ -23,6 +23,16 @@ export function emptyConfig() {
     selfRoles: { channel: '', message: 'React to get a role:', options: [] },
     autoMod: { blockInvites: false, blockLinks: false, bannedWords: [] },
     commands: [],
+    tickets: {
+      enabled: false,
+      panelChannel: 'support',
+      panelTitle: '🎫 Support',
+      panelMessage: 'Click the button below to open a ticket and a staff member will help you.',
+      buttonLabel: 'Open a ticket',
+      categoryName: 'Tickets',
+      supportRoles: [],
+      openMessage: 'Thanks {user}! A staff member will be with you shortly.',
+    },
   };
 }
 

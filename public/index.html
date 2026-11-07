@@ -45,6 +45,7 @@
       <button data-tab="welcome">Welcome</button>
       <button data-tab="selfroles">Self-Roles</button>
       <button data-tab="automod">Auto-Mod</button>
+      <button data-tab="tickets">Tickets</button>
       <button data-tab="commands">Commands</button>
     </nav>
 
@@ -109,6 +110,26 @@
         <label>Banned words (comma separated)</label>
         <input id="amWords" placeholder="word1, word2" />
         <p class="muted small">Staff with "Manage Messages" are never auto-moderated.</p>
+      </div>
+
+      <!-- Tickets -->
+      <div class="tab hidden" data-tab="tickets">
+        <label class="checkrow"><input type="checkbox" id="tkEnabled" /> Enable ticket system</label>
+        <label>Channel for the "open a ticket" panel</label>
+        <input id="tkPanelChannel" placeholder="support" />
+        <label>Panel title</label>
+        <input id="tkPanelTitle" placeholder="🎫 Support" />
+        <label>Panel message</label>
+        <textarea id="tkPanelMessage" rows="3" placeholder="Click below to open a ticket."></textarea>
+        <label>Button label</label>
+        <input id="tkButtonLabel" placeholder="Open a ticket" />
+        <label>Category new tickets are created under</label>
+        <input id="tkCategory" placeholder="Tickets" />
+        <label>Support roles (comma separated role names)</label>
+        <input id="tkSupportRoles" placeholder="Owner, Support" />
+        <label>First message inside a new ticket</label>
+        <textarea id="tkOpenMessage" rows="3" placeholder="Thanks {user}! A staff member will help you shortly."></textarea>
+        <p class="muted small">Members click the button to open a private channel with your support roles. Each ticket has a Close button. <code>{user}</code> becomes a mention.</p>
       </div>
 
       <!-- Commands -->

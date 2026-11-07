@@ -10,12 +10,13 @@ It's a tiny self-hosted web app plus a Discord bot, in one Node process.
 ## Features
 
 - 📱 **Phone-first web UI** — dark, Discord-style, works great on mobile.
-- 🧩 **Templates** — start from a Community, Gaming Clan or Creator layout, then tweak.
+- 🧩 **Templates** — start from a Community, Gaming Clan, Creator or Seller layout, then tweak.
 - 👑 **Roles** — name, color, hoist, mentionable and permission toggles.
 - 🗂️ **Categories & channels** — text / voice / announcement / forum / stage.
 - 📜 **Rules message** — posted automatically (supports `<#channel-name>` links).
 - 👋 **Welcome messages** — greets new members (`{user}` becomes a mention).
 - 🎭 **Reaction roles** — members react to self-assign roles.
+- 🎫 **Ticket system** — a button panel opens a private support/order channel between the member and your staff, with a Close button. One open ticket per member.
 - 🛡️ **Auto-mod** — block invite links, block all links, banned-word filter (staff exempt).
 - ⚡ **Slash commands** — built-in `/ping`, `/serverinfo`, `/membercount` + your own custom replies.
 - ♻️ **Idempotent** — re-applying updates existing roles/channels instead of duplicating.
@@ -49,6 +50,19 @@ Open the printed URL (default <http://localhost:3000>). If you didn't set
 ### 3. Build your server
 Log in → pick your server → edit the tabs → **Save** (keeps the config) →
 **Apply to server** (makes the changes live).
+
+## Ticket system
+
+Enable it in the **Tickets** tab (the **Seller** template turns it on already).
+On **Apply**, the bot posts a panel message with an "Open a ticket" button in
+your chosen channel. When a member clicks it:
+
+1. The bot creates a private channel under your **Tickets** category.
+2. Only that member and your **support roles** can see it.
+3. The ticket has a **Close** button (staff or the ticket owner can close it).
+
+Each member can have one open ticket at a time. For the button to keep working,
+the bot must stay online.
 
 ## Config storage
 Each server's setup is saved as JSON in `data/guilds/<guildId>.json`, so you

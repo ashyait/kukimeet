@@ -122,6 +122,71 @@ export const templates = {
   },
 };
 
+templates.seller = {
+  serverName: 'My Shop',
+  roles: [
+    { name: 'Owner', color: '#f1c40f', hoist: true, mentionable: true, permissions: ['Administrator'] },
+    { name: 'Support', color: '#3498db', hoist: true, mentionable: true, permissions: ['ManageChannels', 'ManageMessages', 'KickMembers'] },
+    { name: 'Customer', color: '#2ecc71', hoist: false, mentionable: true, permissions: [] },
+    { name: 'Member', color: '#95a5a6', hoist: false, mentionable: true, permissions: [] },
+  ],
+  categories: [
+    {
+      name: 'Information',
+      channels: [
+        { name: 'rules', type: 'text', topic: 'Read before buying' },
+        { name: 'announcements', type: 'announcement', topic: 'Updates & news' },
+        { name: 'faq', type: 'text', topic: 'Frequently asked questions' },
+      ],
+    },
+    {
+      name: 'Store',
+      channels: [
+        { name: 'products', type: 'text', topic: 'What we offer' },
+        { name: 'pricing', type: 'text', topic: 'Current prices' },
+        { name: 'showcase', type: 'text', topic: 'Demos and previews' },
+        { name: 'vouches', type: 'text', topic: 'Customer reviews', slowmode: 5 },
+      ],
+    },
+    {
+      name: 'Support',
+      channels: [
+        { name: 'support', type: 'text', topic: 'Open a ticket here' },
+      ],
+    },
+    {
+      name: 'Community',
+      channels: [
+        { name: 'general', type: 'text', topic: 'General chat' },
+        { name: 'Lounge', type: 'voice' },
+      ],
+    },
+  ],
+  rules: {
+    channel: 'rules',
+    title: '📜 Store Rules',
+    content:
+      '1. Be respectful to staff and other members.\n2. No spam or advertising other servers/products.\n3. For orders or help, open a ticket in <#support>.\n4. Post honest reviews in <#vouches>.\n5. No scamming, chargebacks fraud or impersonation — instant ban.',
+  },
+  welcome: { channel: 'general', message: 'Welcome {user}! 🎉 Check <#products> and <#pricing>, and open a ticket in <#support> when you\'re ready.' },
+  selfRoles: { channel: '', message: '', options: [] },
+  autoMod: { blockInvites: true, blockLinks: false, bannedWords: [] },
+  commands: [
+    { name: 'buy', description: 'How to purchase', response: 'To order, head to <#support> and open a ticket. Staff will guide you through it!' },
+    { name: 'vouch', description: 'How to leave a review', response: 'Loved it? Please leave a review in <#vouches>! 🙏' },
+  ],
+  tickets: {
+    enabled: true,
+    panelChannel: 'support',
+    panelTitle: '🎫 Open a Ticket',
+    panelMessage: 'Need help or want to place an order? Click below and our team will assist you privately.',
+    buttonLabel: 'Open a ticket',
+    categoryName: 'Tickets',
+    supportRoles: ['Owner', 'Support'],
+    openMessage: 'Thanks {user}! Tell us what you need and a staff member will be right with you.',
+  },
+};
+
 export function templateNames() {
   return Object.keys(templates);
 }

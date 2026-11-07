@@ -5,6 +5,7 @@ import {
   PermissionFlagsBits,
   OverwriteType,
 } from 'discord.js';
+import { postPanel } from './tickets.js';
 
 const CHANNEL_TYPES = {
   text: ChannelType.GuildText,
@@ -177,6 +178,17 @@ export async function applyConfig(guild, config, log = () => {}) {
       } catch (e) {
         result.warnings.push(`Self-roles message: ${e.message}`);
       }
+    }
+  }
+
+  // 6. Ticket panel
+  if (config.tickets && config.tickets.enabled) {
+    try {
+      const r = await postPanel(guild, config, channelsByName);
+      if (r.posted) { result.messagesPosted++; log('Posted ticket panel'); }
+      if (r.warning) result.warnings.push(r.warning);
+    } catch (e) {
+      result.warnings.push(`Ticket panel: ${e.message}`);
     }
   }
 

@@ -7,6 +7,7 @@ import {
 } from 'discord.js';
 import { loadConfig } from './store.js';
 import { registerCommands, handleCommand } from './commands.js';
+import { handleButton } from './tickets.js';
 
 let client = null;
 
@@ -125,6 +126,10 @@ export async function startBot(token) {
 
   client.on(Events.InteractionCreate, async (interaction) => {
     try {
+      if (interaction.isButton()) {
+        await handleButton(interaction);
+        return;
+      }
       await handleCommand(interaction);
     } catch (e) {
       console.warn(`Command error: ${e.message}`);
