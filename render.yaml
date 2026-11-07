@@ -1,0 +1,20 @@
+# One-tap deploy to Render (https://render.com) — works entirely from a phone browser.
+# In Render: New ▸ Blueprint ▸ connect this repo. Render reads this file,
+# then asks you to paste DISCORD_TOKEN and ADMIN_PASSWORD (kept secret).
+services:
+  - type: web
+    name: kukimeet
+    runtime: node
+    plan: free
+    branch: claude/discord-server-setup-tool-mnjjrz
+    buildCommand: npm install
+    startCommand: npm start
+    autoDeploy: true
+    envVars:
+      # Your Discord bot token — paste it in Render, never commit it.
+      - key: DISCORD_TOKEN
+        sync: false
+      # The password you'll use to log in to the Kukimeet web app.
+      - key: ADMIN_PASSWORD
+        sync: false
+      # Render provides PORT automatically; the app reads it.

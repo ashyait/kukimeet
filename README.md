@@ -21,7 +21,41 @@ It's a tiny self-hosted web app plus a Discord bot, in one Node process.
 - ⚡ **Slash commands** — built-in `/ping`, `/serverinfo`, `/membercount` + your own custom replies.
 - ♻️ **Idempotent** — re-applying updates existing roles/channels instead of duplicating.
 
-## Setup
+## Run it from your phone (no computer needed)
+
+You can deploy and use Kukimeet entirely from your phone's browser.
+
+**A. Make the Discord bot (phone browser)**
+1. Open <https://discord.com/developers/applications> → **New Application**.
+2. **Bot** tab → **Reset Token** → copy it (keep it secret).
+3. Scroll to **Privileged Gateway Intents** → turn on **Server Members Intent**
+   and **Message Content Intent** → **Save**.
+4. **OAuth2 → URL Generator** → tick `bot` and `applications.commands`, then tick
+   **Administrator** under bot permissions → copy the generated URL → open it →
+   add the bot to your server.
+
+**B. Host it free on Render (phone browser)**
+1. Go to <https://render.com> and sign up (use "Sign in with GitHub").
+2. **New ▸ Blueprint** → pick the `ashyait/kukimeet` repo → it detects
+   `render.yaml`.
+3. When asked, paste your **DISCORD_TOKEN** and choose an **ADMIN_PASSWORD**
+   (these stay secret in Render — never type them into a chat).
+4. **Apply / Deploy** and wait a minute. Render gives you a URL like
+   `https://kukimeet-xxxx.onrender.com`.
+
+**C. Build your server (phone browser)**
+1. Open that Render URL on your phone → log in with your ADMIN_PASSWORD.
+2. Pick your server → **General** tab → load the **Seller** template (or any
+   other) → tweak anything → **Apply to server**.
+
+> Render's free plan sleeps the app after idle time and wakes it on the next
+> visit — fine for building your server. For the ticket button, welcome
+> messages and auto-mod to keep working 24/7, use a paid always-on plan or
+> another always-on host.
+
+---
+
+## Run it on your own computer
 
 ### 1. Create a Discord bot
 1. Go to <https://discord.com/developers/applications> → **New Application**.
