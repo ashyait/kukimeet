@@ -1,0 +1,19 @@
+{
+  "name": "kukimeet",
+  "version": "1.0.0",
+  "description": "Phone-friendly Discord server builder: design roles, channels, rules, welcome messages and bot commands from your phone and apply them automatically.",
+  "type": "module",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "check": "node --check src/index.js && node --check src/bot.js && node --check src/apply.js && node --check src/commands.js && node --check src/templates.js && node --check src/store.js && node --check src/web.js && node --check public/app.js"
+  },
+  "engines": {
+    "node": ">=20.12"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "discord.js": "^14.28.1",
+    "express": "^5.3.0"
+  }
+}
