@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#5865F2" />
+  <title>Kukimeet — Discord Server Builder</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Login -->
+  <section id="login" class="screen">
+    <div class="card login-card">
+      <h1>🛠️ Kukimeet</h1>
+      <p class="muted">Build your Discord server from your phone.</p>
+      <input id="password" type="password" inputmode="text" placeholder="Admin password" autocomplete="current-password" />
+      <button id="loginBtn" class="primary">Log in</button>
+      <p id="loginError" class="error"></p>
+    </div>
+  </section>
+
+  <!-- Guild picker -->
+  <section id="guilds" class="screen hidden">
+    <header class="bar">
+      <strong>Your servers</strong>
+      <button id="refreshGuilds" class="ghost">↻</button>
+    </header>
+    <div id="guildList" class="list"></div>
+    <p id="guildHint" class="muted center"></p>
+  </section>
+
+  <!-- Editor -->
+  <section id="editor" class="screen hidden">
+    <header class="bar">
+      <button id="backBtn" class="ghost">‹ Back</button>
+      <strong id="editorTitle">Edit</strong>
+      <span></span>
+    </header>
+
+    <nav class="tabs" id="tabs">
+      <button data-tab="general" class="active">General</button>
+      <button data-tab="roles">Roles</button>
+      <button data-tab="channels">Channels</button>
+      <button data-tab="rules">Rules</button>
+      <button data-tab="welcome">Welcome</button>
+      <button data-tab="selfroles">Self-Roles</button>
+      <button data-tab="automod">Auto-Mod</button>
+      <button data-tab="commands">Commands</button>
+    </nav>
+
+    <div class="tab-body">
+      <!-- General -->
+      <div class="tab" data-tab="general">
+        <label>Server name</label>
+        <input id="serverName" placeholder="My Awesome Server" />
+        <label>Start from a template</label>
+        <select id="templatePick"><option value="">— keep current —</option></select>
+        <button id="applyTemplate" class="ghost">Load template</button>
+        <p class="muted small">Loading a template replaces everything below. You can still edit after.</p>
+      </div>
+
+      <!-- Roles -->
+      <div class="tab hidden" data-tab="roles">
+        <div id="rolesList"></div>
+        <button id="addRole" class="ghost">+ Add role</button>
+      </div>
+
+      <!-- Channels -->
+      <div class="tab hidden" data-tab="channels">
+        <div id="catList"></div>
+        <button id="addCat" class="ghost">+ Add category</button>
+      </div>
+
+      <!-- Rules -->
+      <div class="tab hidden" data-tab="rules">
+        <label>Rules channel name</label>
+        <input id="rulesChannel" placeholder="rules" />
+        <label>Title</label>
+        <input id="rulesTitle" placeholder="Server Rules" />
+        <label>Rules text</label>
+        <textarea id="rulesContent" rows="8" placeholder="1. Be respectful..."></textarea>
+        <p class="muted small">Tip: write <code>&lt;#channel-name&gt;</code> to link a channel.</p>
+      </div>
+
+      <!-- Welcome -->
+      <div class="tab hidden" data-tab="welcome">
+        <label>Welcome channel name</label>
+        <input id="welcomeChannel" placeholder="welcome" />
+        <label>Welcome message</label>
+        <textarea id="welcomeMessage" rows="4" placeholder="Welcome {user}!"></textarea>
+        <p class="muted small"><code>{user}</code> is replaced with a mention of the new member.</p>
+      </div>
+
+      <!-- Self roles -->
+      <div class="tab hidden" data-tab="selfroles">
+        <label>Channel for the reaction-role message</label>
+        <input id="srChannel" placeholder="roles" />
+        <label>Message</label>
+        <textarea id="srMessage" rows="3" placeholder="React to get a role:"></textarea>
+        <div id="srList"></div>
+        <button id="addSr" class="ghost">+ Add reaction role</button>
+        <p class="muted small">Members react with the emoji to self-assign that role.</p>
+      </div>
+
+      <!-- Automod -->
+      <div class="tab hidden" data-tab="automod">
+        <label class="checkrow"><input type="checkbox" id="amInvites" /> Delete Discord invite links</label>
+        <label class="checkrow"><input type="checkbox" id="amLinks" /> Delete all links</label>
+        <label>Banned words (comma separated)</label>
+        <input id="amWords" placeholder="word1, word2" />
+        <p class="muted small">Staff with "Manage Messages" are never auto-moderated.</p>
+      </div>
+
+      <!-- Commands -->
+      <div class="tab hidden" data-tab="commands">
+        <p class="muted small">Custom slash commands that reply with a fixed message. Built-in: /ping, /serverinfo, /membercount.</p>
+        <div id="cmdList"></div>
+        <button id="addCmd" class="ghost">+ Add command</button>
+      </div>
+    </div>
+
+    <footer class="actions">
+      <button id="saveBtn" class="ghost">Save</button>
+      <button id="applyBtn" class="primary">Apply to server</button>
+    </footer>
+    <div id="toast" class="toast hidden"></div>
+  </section>
+
+  <div id="overlay" class="overlay hidden"><div class="spinner"></div><span id="overlayText">Working…</span></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
